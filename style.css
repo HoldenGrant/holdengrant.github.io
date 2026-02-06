@@ -1088,6 +1088,271 @@ header {
     gap: var(--spacing-md);
 }
 
+/* Gallery Section */
+.gallery-section {
+    padding: var(--spacing-3xl) 0;
+    position: relative;
+}
+
+.gallery-grid {
+    column-count: 4;
+    column-gap: 1rem;
+    margin-top: var(--spacing-2xl);
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    background: var(--bg-card);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-image {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.4s ease, filter 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image img {
+    transform: scale(1.05);
+    filter: brightness(0.8);
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(15, 23, 42, 0.95) 0%,
+        rgba(15, 23, 42, 0.7) 40%,
+        transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+    transform: translateY(15px);
+    transition: transform 0.3s ease 0.1s;
+}
+
+.gallery-item:hover .gallery-title {
+    transform: translateY(0);
+}
+
+.gallery-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    transform: translateY(15px);
+    transition: transform 0.3s ease 0.15s;
+}
+
+.gallery-item:hover .gallery-tags {
+    transform: translateY(0);
+}
+
+.gallery-tag {
+    padding: 0.25rem 0.6rem;
+    background: rgba(255, 107, 74, 0.2);
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(255, 107, 74, 0.4);
+    transition: all 0.3s ease;
+}
+
+.gallery-tag:hover {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.gallery-actions {
+    display: flex;
+    gap: 0.75rem;
+    transform: translateY(15px);
+    transition: transform 0.3s ease 0.2s;
+}
+
+.gallery-item:hover .gallery-actions {
+    transform: translateY(0);
+}
+
+.gallery-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.6rem 1rem;
+    border-radius: var(--border-radius-sm);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 0.85rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.gallery-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.gallery-btn:hover::before {
+    width: 250px;
+    height: 250px;
+}
+
+.gallery-btn svg {
+    position: relative;
+    z-index: 1;
+}
+
+.lightbox-btn {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.lightbox-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 74, 0.4);
+}
+
+.url-btn {
+    background: transparent;
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.url-btn:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.lightbox-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-close:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: rotate(90deg);
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    position: relative;
+    animation: lightboxZoom 0.4s ease;
+    overflow: auto;
+}
+
+@keyframes lightboxZoom {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.lightbox-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
 /* Contact Section */
 .contact-section {
     padding: var(--spacing-3xl) 0;
@@ -1393,6 +1658,10 @@ header {
         order: 2;
     }
     
+    .gallery-grid {
+        column-count: 2;
+    }
+    
     .contact-grid {
         grid-template-columns: 1fr;
     }
@@ -1440,8 +1709,27 @@ header {
         text-align: center;
     }
     
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-actions {
+        flex-direction: column;
+    }
+    
+    .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+        width: 40px;
+        height: 40px;
+    }
+    
     .project-buttons {
         flex-direction: column;
+    }
+    
+    .gallery-grid {
+        column-count: 1;
     }
 }
 
