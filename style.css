@@ -1379,7 +1379,7 @@ header {
     margin-top: var(--spacing-lg);
 }
 
-.contact-details p {
+.contact-details p, .contact-details a {
     color: var(--text-secondary);
     margin-bottom: var(--spacing-sm);
     line-height: 1.8;
